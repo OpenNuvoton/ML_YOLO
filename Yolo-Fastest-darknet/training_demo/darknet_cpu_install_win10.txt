@@ -1,0 +1,11 @@
+Build 流程:
+1. 依照這個方法安裝
+https://ithelp.ithome.com.tw/articles/10231950
+
+執行會遇到的問題:
+1. opencv_world460.dll was not found
+https://blog.csdn.net/Feeryman_Lee/article/details/106114718
+将 opencv 安装路径 目录\opencv\build\x64\vc15\bin 中 3 个后缀是.dll 的应用程序扩展复制到 C:\Windows\System32 中 或是 exe 同資料夾底下
+
+2. 缺少之dll檔請找 dll_missing.7z，並放到exe同資料夾
+

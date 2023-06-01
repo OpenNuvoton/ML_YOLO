@@ -1,0 +1,6 @@
+classes= 80
+train  = C:\Users\CYCHEN38\image_detection\Yolo-FastestV2\image_dataset\coco-2017-50-2class\output_yolo\train.txt
+valid  = C:\Users\CYCHEN38\image_detection\Yolo-FastestV2\image_dataset\coco-2017-50-2class\output_yolo\val.txt
+names = coco.names
+backup = model
+

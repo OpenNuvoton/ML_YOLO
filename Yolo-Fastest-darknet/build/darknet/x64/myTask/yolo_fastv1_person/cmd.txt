@@ -1,0 +1,12 @@
+.\darknet.exe detect .\cfg\yolo-fastest-1.1.cfg .\myTask\yolo-fastest-1.1.weights .\data\dog.jpg
+
+.\darknet.exe detector calc_anchors .\myTask\yolo_fastv1_person\coco.data -num_of_clusters 6 -width 320 -height 320 -show
+
+.\darknet.exe partial .\myTask\yolo_fastv1_person\yolo-fastest-1.1-person.cfg .\myTask\yolo-fastest-1.1.weights .\myTask\yolo_fastv1_person\yolo-fastest-person.conv.109 109
+
+.\darknet.exe detector train .\myTask\yolo_fastv1_person\coco.data .\myTask\yolo_fastv1_person\yolo-fastest-1.1-person.cfg .\myTask\yolo_fastv1_person\yolo-fastest-person.conv.109
+
+驗證:
+.\darknet.exe detect .\myTask\yolo_fastv1_person\yolo-fastest-1.1-person.cfg .\myTask\yolo_fastv1_person\yolo-fastest-1_final.weights .\data\person.jpg
+
+.\darknet detector map .\myTask\yolo_fastv1_person\coco.data .\myTask\yolo_fastv1_person\yolo-fastest-1.1-person.cfg .\myTask\yolo_fastv1_person\yolo-fastest-1_final.weights -points 0

@@ -1,0 +1,6 @@
+classes= 1
+train  = C:\Users\USER\Desktop\Yolo-Fastest-darknet\training_demo\output_yolo_person\train.txt
+valid  = C:\Users\USER\Desktop\Yolo-Fastest-darknet\training_demo\output_yolo_person\val.txt
+names = myTask\yolo_fastv1_person\coco.names
+backup = myTask\yolo_fastv1_person\backup
+

@@ -1,0 +1,23 @@
+Build 流程:
+1. 依照本篇方法
+   https://ithelp.ithome.com.tw/articles/10231950
+
+Build會遇到的問題:
+   
+1. 屬性裡沒有 CUDA C/C++, 下面也會顯示
+組態 'Release|x64' 的 Designtime 建置失敗。IntelliSense 可能無法使用。 設定環境變數 TRACEDESIGNTIME = true，並重新啟動 Visual Studio 進行調查。
+
+解決方法 ==> 在Yolo-Fastest-darknet\build\darknet\darknet.vcxproj，更改cuda到你下載的版本，例如CUDA 11.8
+ 
+詳細: https://www.jb51.net/article/192833.htm
+
+2. Unsupported gpu architecture 'compute_30' 
+解決方法 ==> 屬性 ==> CUDA C/C++ ==> Device ==>Code Generation 欄位 ==> 輸入你顯卡搭配的參數(可以參考Makefile),例如 compute_86,sm_86
+
+
+執行會遇到的問題:
+0. 缺少之dll檔請找 dll_missing.7z，並放到exe同資料夾
+
+1. 需要使用cuda 11.8版本和cudnn 8.6，否則會缺少cublaslt64_11.dll
+
+2. 需要zlibwapi.dll

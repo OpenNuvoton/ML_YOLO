@@ -1,0 +1,29 @@
+.vs/
+*.vcxproj.user
+output_yolo/
+
+.ipynb_checkpoints/
+__pycache__/
+backup
+
+build/darknet/x64/bad.list
+build/darknet/x64/bad_label.list
+build/darknet/x64/chart.png
+build/darknet/x64/cloud.png
+build/darknet/x64/counters_per_class.txt
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# virtualenv
+.venv
+venv/
+ENV/
