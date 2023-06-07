@@ -15,5 +15,5 @@ and final supporting vela compiler for ARM NPU device.
 - If user wants to deploy on ARM NPU device, the vela compiler help you convert tflite to vela tflite C++ source file.
 
 # Inference code
-- MCU: [M55+NPU](https://github.com/chchen59/M55A1BSP)  (not yet released)
+- MCU: 
 - MPU: [MA35D1](https://github.com/OpenNuvoton/MA35D1_Linux_Applications/tree/master/machine_learning)
