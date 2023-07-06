@@ -1,18 +1,17 @@
-# ML_yolo
-- This Tool help you training the yolo-series model with darknet, converting to tflite model which is easy to delpoy on MCU/MPU, 
-and final supporting vela compiler for ARM NPU device.
+# ML_YOLO
+- This tool assists you in training the YOLO-series models using Darknet and converting them to TFLite models, which are easy to deploy on MCU/MPU devices. It also provides support for the Vela compiler for ARM NPU devices.
 ## Yolo-Fastest-darknet
 - `Yolo-Fastest-darknet/`
-- This is training model step/workfolder.
-- Use the darknet to train the yolo-fastestv1. It is from [dog-qiuqiu/Yolo-Fastest](https://github.com/dog-qiuqiu/Yolo-Fastest) and have pre-train model.
+- This is the training model step/workfolder.
+- Use Darknet to train the YOLO-Fastestv1 model, which is obtained from [dog-qiuqiu/Yolo-Fastest](https://github.com/dog-qiuqiu/Yolo-Fastest) and comes with a pre-trained model.
 - How to use it, please check `Yolo-Fastest-darknet/`
 ## darknet_tflite
 - `darknet_tflite/`
-- This is a step to convert darknet model to tensorflow model and tflite model.
-- Use python scripts to handle this step, so it needs our [NuEdgeWise](https://github.com/OpenNuvoton/NuEdgeWise) env installed.  
+- This step involves converting the Darknet model to a TensorFlow model and then to a TFLite model.
+- To handle this step, Python scripts are used, so it is necessary to have our [NuEdgeWise](https://github.com/OpenNuvoton/NuEdgeWise) environment installed.   
 ## vela
 - `vela`
-- If user wants to deploy on ARM NPU device, the vela compiler help you convert tflite to vela tflite C++ source file.
+- If the user intends to deploy the model on an ARM NPU device, the Vela compiler assists in converting the TFLite model to Vela TFLite C++ source files.
 
 # Inference code
 - MCU: 
