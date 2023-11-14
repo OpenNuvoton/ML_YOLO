@@ -5,14 +5,14 @@ set IMAGE_SRC_HEIGHT=320
 ::set LABEL_SRC_FILE=..\labels\labels_mobilenet_v2_1.0_224.txt
 ::set GEN_LABEL_FILE_NAME=Labels
 
-set MODEL_SRC_DIR=..\darknet_tflite\myModel\coco\output_model
+set MODEL_SRC_DIR=..\workspace\MyTask_1
 set MODEL_SRC_FILE=yolo-fastest-1.1-int8.tflite
 set MODEL_OPTIMISE_FILE=yolo-fastest-1.1-int8_vela.tflite
 ::The vela OPTIMISE_FILE should be SRC_FILE_NAME + _vela
 
 set TEMPLATES_DIR=Tool\tflite2cpp\templates
 
-set GEN_SRC_DIR=generated
+set GEN_SRC_DIR=..\workspace\MyTask_1\vela
 set GEN_INC_DIR=generated\include
 
 ::vela configure variable section

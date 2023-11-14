@@ -4,7 +4,7 @@
 - `Yolo-Fastest-darknet/`
 - This is the training model step/workfolder.
 - Use Darknet to train the YOLO-Fastestv1 model, which is obtained from [dog-qiuqiu/Yolo-Fastest](https://github.com/dog-qiuqiu/Yolo-Fastest) and comes with a pre-trained model.
-- How to use it, please check `Yolo-Fastest-darknet/`
+- How to use it, please check `Yolo-Fastest-darknet/`.
 ## darknet_tflite
 - `darknet_tflite/`
 - This step involves converting the Darknet model to a TensorFlow model and then to a TFLite model.
