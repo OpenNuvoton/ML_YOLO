@@ -1,0 +1,30 @@
+1. prepare data=>
+COCO data prepare: open json2txt.ipynb
+
+2. Darknet YOLO (if use CPU, please use darknet_no_gpu.exe)=>
+calc_anchors:
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detector calc_anchors .\workspace\MyTask\coco.data -num_of_clusters 6 -width 320 -height 320 -show
+Create pretrain weights:
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe partial .\workspace\MyTask\yolo-fastest-1.1.cfg .\Yolo-Fastest-darknet\ModelZoo\yolo-fastest-1.1_coco\yolo-fastest-1.1.weights .\workspace\MyTask\yolo-fastest-1.1.conv.109 109
+train:
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detector train .\workspace\MyTask\coco.data .\workspace\MyTask\yolo-fastest-1.1.cfg .\workspace\MyTask\yolo-fastest-1.1.conv.109
+
+verifiied:
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detector map .\workspace\MyTask\coco.data .\workspace\MyTask\yolo-fastest-1.1.cfg .\workspace\MyTask\backup\yolo-fastest-1_last.weights -points 0
+
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detector test .\workspace\MyTask\coco.data .\workspace\MyTask\yolo-fastest-1.1.cfg .\workspace\MyTask\backup\yolo-fastest-1_last.weights -thresh 0.5
+
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detect .\workspace\MyTask\yolo-fastest-1.1.cfg .\workspace\MyTask\backup\yolo-fastest-1_last.weights .\data\dog.jpg
+
+.\Yolo-Fastest-darknet\build\darknet\x64\darknet.exe detector test .\workspace\MyTask\coco.data .\workspace\MyTask\yolo-fastest-1.1.cfg .\workspace\MyTask\backup\yolo-fastest-1_last.weights -ext_output dog.jpg
+
+3. Convert to tflite=>
+Convert to keras:
+python tools/model_converter/convert.py myModel/coco_person/yolo-fastest-1.1-person.cfg myModel/coco_person/yolo-fastest-1_final.weights myModel/coco_person/output_model/yolo-fastest-1.1-person.h5  -f
+Convert to tflite f16(not work)
+python tools/model_converter/custom_tflite_convert.py --keras_model_file ./myModel/coco_person/output_model/yolo-fastest-1.1-person.h5 --output_file ./myModel/coco_person/output_model/yolo-fastest-1.1-person.tflite
+Convert to tflite int8 (vela need int8)
+python tools/model_converter/post_train_quant_convert.py --keras_model_file myModel/coco_person/output_model/yolo-fastest-1.1-person.h5 --annotation_file myModel/coco_person/val.txt --model_input_shape 320x320 --sample_num 100 --output_format int8 --output_file myModel/coco_person/output_model/yolo-fastest-1.1-person-int8.tflite
+Convert to tflite f16(dynamic)
+python tools/model_converter/post_train_quant_convert.py --keras_model_file myModel/coco_person/output_model/yolo-fastest-1.1-person.h5 --annotation_file myModel/coco_person/val.txt --model_input_shape 320x320 --sample_num 100 --output_format f32 --output_file myModel/coco_person/output_model/yolo-fastest-1.1-person-f32.tflite
+
