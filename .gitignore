@@ -1,3 +1,5 @@
+workspace/*/
+
 .vs/
 *.vcxproj.user
 output_yolo/

@@ -4,7 +4,7 @@
 -  We offer an easy UI notebook `yolo-fastest-usage.ipynb` for training, testing and deployment of tflite.
 
 ## Build
-- The built exe `darknet.exe` or `darknet_no_gpu.exe` are in the folders already and we offer some maybe missing dlls. However, if it doesn't work or using different GPU(RTX 3070~3090), the rebuild is needed.
+- The built exe `darknet.exe` or `darknet_no_gpu.exe` are in the folders already and we offer some maybe missing dlls. However, if it doesn't work or using different GPU(RTX 3070~3090/ RTX 40 series), the rebuild is needed.
 - The build steps is from here [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet). Some issue you may encounter is here `Yolo-Fastest-darknet/training_demo/darknet_cpu_install_win10.txt` or `darknet_gpu_install_win10.txt`. 
 
 ## Usage
@@ -14,7 +14,7 @@
 0 0.468977 0.514602 0.470129 0.714609
 0 0.477576 0.572844 0.427842 0.750625
 ```
-- User should create the dataset following the directory as below:
+- *(important)* User should create the dataset following the directory as below:
 ```
   Your Dataset Path
   ├── coco.names            # category label file
@@ -38,6 +38,7 @@
   ```
 - The image and its corresponding *.txt label file have the same name and are store in `train/` or `val/`. 
 - Examples of the dataset path files, such as `train.txt` and `val.txt`, are as follows:
+- We offer a script to generate `train.txt` and `val.txt` basing on path of saving train and validation data. `ML_YOLO/Yolo-Fastest-darknet/training_demo/json2txt.ipynb`.
 train.txt
   ```
   C:\Users\USER\Desktop\Yolo-Fastest-darknet\training_demo\output_yolo_person\train\000000000036.jpg
