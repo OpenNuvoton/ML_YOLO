@@ -14,5 +14,6 @@
 - If the user intends to deploy the model on an ARM NPU device, the Vela compiler assists in converting the TFLite model to Vela TFLite C++ source files.
 
 # Inference code
-- MCU: 
+- MCU: [M55M1](https://github.com/OpenNuvoton/M55M1BSP/tree/master/SampleCode/MachineLearning)
+    - ObjectDetection_FreeRTOS/
 - MPU: [MA35D1](https://github.com/OpenNuvoton/MA35D1_Linux_Applications/tree/master/machine_learning)
