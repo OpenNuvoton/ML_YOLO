@@ -1,0 +1,53 @@
+use yolox-ti-lite_tflite
+
+demo 1 pic:
+python tools/demo.py image -n yolox_nano_ti_lite -c tflite_yolox_nano_ti/320_DW/yolox_nano_320_DW_ti_lite.pth --path assets/dog.jpg --conf 0.25 --nms 0.45 --tsize 320 --save_result --device cpu
+
+train:
+python tools/train.py -f exps/default/yolox_nano_ti_lite_nu.py -d 1 -b 64 --fp16 -o -c pretrain/tflite_yolox_nano_ti/320_DW/yolox_nano_320_DW_ti_lite.pth
+python tools/train.py -f exps/default/yolox_nano_ti_lite_nu.py -d 1 -b 64 --fp16 -o
+
+tensorboard:
+tensorboard --logdir .
+
+EVAL pytorch:
+python tools/eval.py -n yolox_nano_ti_lite -c yolox_nano_ti_lite_26p1_41p8_checkpoint.pth --conf 0.001
+python tools/eval.py -f exps/default/yolox_nano_ti_lite_nu.py -c YOLOX_outputs/yolox_nano_ti_lite_nu_medicinev2_rgb/latest_ckpt.pth --conf 0.001
+
+Pytorch to ONNX:
+python tools/export_onnx.py -n yolox_nano_ti_lite -c yolox_nano_ti_lite_26p1_41p8_checkpoint.pth --output-name yolox_nano_ti_lite.onnx
+python tools/export_onnx.py -f exps/default/yolox_nano_ti_lite_nu.py -c YOLOX_outputs/yolox_nano_ti_lite_nu/latest_ckpt.pth --output-name YOLOX_outputs/yolox_nano_ti_lite_nu/yolox_nano_nu_400_medicine.onnx
+
+ONNX demo:
+python demo/ONNXRuntime/onnx_inference.py -m tflite_yolox_nano_ti/320_DW/yolox_nano_320_DW_ti_lite.pth -i assets/dog.jpg -o tmp/onnx/ -s 0.6 --input_shape 320,320
+python demo/ONNXRuntime/onnx_inference.py -m YOLOX_outputs/yolox_nano_ti_lite_nu/yolox_nano_nu_320_medicine.onnx -i D:\ML_train_data\medicine\val\IMG_00000001.jpg -o tmp/onnx/ -s 0.6 --input_shape 320,320 -a medicine_coco/annotation/medicine_train.json
+
+
+ONNX to tflite: (onnx2tf==1.8.1)
+cali data => 
+python demo/TFLite/generate_calib_data.py --img-size 320 320 --n-img 400 -o calib_data_320x320_n300_hg.npy --img-dir datasets\hagrid_coco\train2017
+to tflite =>
+onnx2tf -i tflite_yolox_nano_ti/320_DW/yolox_nano_320_DW_ti_lite.onnx -oiqt -qcind images calib_data_320X320_n200.npy "[[[[0,0,0]]]]" "[[[[1,1,1]]]]"
+onnx2tf -i YOLOX_outputs/yolox_nano_ti_lite_nu/yolox_nano_nu_400_medicine.onnx -oiqt -qcind images calib_data_320x320_n300_medicine.npy "[[[[0,0,0]]]]" "[[[[1,1,1]]]]"
+
+New onnx2tf:(not work, update later)
+onnx2tf -i YOLOX_outputs/nano/yolox_nano.onnx -oiqt
+onnx2tf -i YOLOX_outputs/nano/yolox_nano.onnx -oiqt -prf param_replacement.json
+
+EVAL int8 quantitation/float tflite
+python demo\TFLite\tflite_eval.py -m tflite_yolox_nano_ti\320_DW\saved_model\yolox_nano_320_DW_ti_lite_full_integer_quant.tflite -a instances_val2017.json
+python demo\TFLite\tflite_eval.py -m YOLOX_outputs/yolox_nano_nu_hg_110_full_integer_quant.tflite -a hagrid_val.json
+
+test singl pic
+python demo\TFLite\tflite_inference.py -m tflite_yolox_nano_ti\320_DW\saved_model\yolox_nano_320_DW_ti_lite_full_integer_quant.tflite -s 0.4 -i assets\dog.jpg -a coco\annotations\instances_val2017.json
+python demo\TFLite\tflite_inference.py -m YOLOX_outputs\yolox_nano_ti_lite_nu_hg_150\yolox_nano_ti_lite_nu_hg_150_full_integer_quant.tflite -s 0.6 -i datasets/hagrid_coco\val2017/000ed8e7-aac6-404f-be19-797dc75b9353.jpg -a hagrid_coco/annotations/hagrid_val.json
+(yolofastest)
+python demo\TFLite\tflite_inference.py -m tflite_yolofastest_v1\yolo-fastest-1.1-coco80-int8.tflite -s 0.4 -i assets\dog.jpg -mt yolof
+
+gen image c file
+python demo/TFLite/gen_rgb_cpp.py --image_path assets/dog.jpg --source_folder_path assets/ --image_size 320 320
+python demo/TFLite/gen_rgb_cpp.py --image_path datasets\medicinev2_coco\val2017\WIN_20240531_13_48_13_Pro_jpg.rf.c2d64b93f67b5561b4bacf495d97d3f6.jpg --source_folder_path assets/ --image_size 320 320
+
+convert yolo format data to COCO format data
+python tools/yolo2coco.py --path medicinev2\train --output medicinev2_train.json
+
