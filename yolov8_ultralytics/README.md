@@ -86,7 +86,8 @@ python dg_val.py --weights .\runs\train\exp2\weights\best_full_integer_quant.tfl
 ## Inference code
 - The output file for deplyment is for example `vela\generated\yolov8n_full_integer_quant_vela.tflite` and move it to SD card root directory to update new model. (Please refer the below M55M1 BSP firmware.)
 
-- MCU: [M55M1 Firmware](https://github.com/OpenNuvoton/ML_M55M1_SampleCode/tree/master/M55M1BSP-3.00.001/SampleCode/NuEdgeWise/ObjectDetection_YOLOv8n)
+- The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes. [Link](https://www.nuvoton.com/ai/contact-us/)
+    - [ML_M55M1_SampleCode (private repo)](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
 
 
 
