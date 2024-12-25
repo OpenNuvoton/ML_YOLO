@@ -165,5 +165,5 @@ python demo\TFLite\tflite_inference.py -m YOLOX_outputs\yolox_nano_ti_lite_nu\yo
 
 ## Inference code
 - The output file for deplyment is for example `yolox_nano_ti_lite_nu_full_integer_quant_vela.tflite.cc` and move it to `ObjectDetection_FreeRTOS_yoloxn/Model/` in bsp sample code to update new model.
-
-- MCU: [M55M1 Firmware](https://github.com/OpenNuvoton/ML_M55M1_SampleCode/tree/master/M55M1BSP-3.00.001/SampleCode/NuEdgeWise/ObjectDetection_FreeRTOS_yoloxn)
+- The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes. [Link](https://www.nuvoton.com/ai/contact-us/)
+    - [ML_M55M1_SampleCode (private repo)](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
