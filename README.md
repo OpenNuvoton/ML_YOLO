@@ -18,11 +18,13 @@
 - <img src="assets/Object Detection on Edge FPS(vela) vs mAP50.png" width="600">
    
 # Inference code
-- yolo_fastest_v1.1
-    - MCU: [M55M1](https://github.com/OpenNuvoton/M55M1BSP/tree/master/SampleCode/MachineLearning)
+- Yolo_fastest_v1.1
+    - MCU: [M55M1BSP](https://github.com/OpenNuvoton/M55M1BSP/tree/master/SampleCode/MachineLearning)
         - ObjectDetection_FreeRTOS/
     - MPU: [MA35D1](https://github.com/OpenNuvoton/MA35D1_Linux_Applications/tree/master/machine_learning)
 
 - YoloX-nano/ Yolov8-nano
-    - The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes.  
-    - MCU: [M55M1](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
+    - The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes. [Link](https://www.nuvoton.com/ai/contact-us/)
+    - MCU: [ML_M55M1_SampleCode (private repo)](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
+        - ObjectDetection_FreeRTOS_yoloxn/
+        - ObjectDetection_YOLOv8n/ 
