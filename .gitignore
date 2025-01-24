@@ -108,7 +108,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
 dist/
 downloads/
@@ -271,7 +270,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
 dist/
 downloads/
@@ -410,7 +408,6 @@ wandb/
 
 # Neural Network weights -----------------------------------------------------------------------------------------------
 weights/
-*.weights
 *.pt
 *.pb
 *.onnx
@@ -418,7 +415,6 @@ weights/
 *.mlmodel
 *.mlpackage
 *.torchscript
-*.tflite
 *.h5
 *_saved_model/
 *_web_model/

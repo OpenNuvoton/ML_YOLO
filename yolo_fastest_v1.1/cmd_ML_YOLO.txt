@@ -1,5 +1,5 @@
 1. prepare data=>
-COCO data prepare: open json2txt.ipynb
+COCO data prepare: open Yolo-Fastest-darknet\training_demo\json2txt.ipynb
 
 2. Darknet YOLO (if use CPU, please use darknet_no_gpu.exe)=>
 calc_anchors:
