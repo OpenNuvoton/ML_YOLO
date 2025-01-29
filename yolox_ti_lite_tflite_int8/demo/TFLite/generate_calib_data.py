@@ -1,3 +1,15 @@
+"""Generate calibration data for INT8 quantization.
+This module generates calibration data from a directory of images.
+The generated data can be used for INT8 quantization of a model.
+It preprocesses images to a specified size and optionally converts from BGR to RGB color space.
+
+Functions:
+    parse_args: Parses command line arguments.
+    main: Generates and saves calibration data.
+
+Example:
+    python generate_calib_data.py --img-dir datasets/coco/train2017/ --n-img 200 -o calib_data.npy
+"""
 import argparse
 import glob
 import os
@@ -10,6 +22,10 @@ from utils import preprocess
 
 
 def parse_args():
+    """Parse command line arguments.
+    Returns:
+        argparse.Namespace: An object containing the parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--img-dir', default='datasets/coco/train2017/')
     parser.add_argument('--img-size', type=int, nargs=2, default=[416, 416])
@@ -20,6 +36,11 @@ def parse_args():
 
 
 def main():
+    """Generate and save calibration data.
+    This function parses command line arguments, selects a subset of images,
+    preprocesses them (resizing and optionally color space conversion),
+    and saves the resulting data as a NumPy array.
+    """
     # reference:
     # https://github.com/PINTO0309/onnx2tf#7-calibration-data-creation-for-int8-quantization
 
