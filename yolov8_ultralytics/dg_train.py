@@ -1,9 +1,13 @@
-
+"""
+DG version of training yolov8-nano 
+"""
+import argparse
 from ultralytics import YOLO
 
-import argparse
-
 def parser_arguments():
+    """
+    Parser section
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', type=str, default='', help='initial weights path')
     parser.add_argument('--cfg', type=str, default=None, help='default.yaml path')
@@ -22,7 +26,7 @@ def parser_arguments():
     parser.add_argument('--cache', action='store_true', help='')
     parser.add_argument('--close-mosaic', type=int, default=3, help='(int) disable mosaic augmentation for final epochs')
     parser.add_argument('--resume', action='store_true', help='resume most recent training')
-    
+
     parser.add_argument('--lr0', type=float, default=0.01, help='initial learning rate (i.e. SGD=1E-2, Adam=1E-3)')
     parser.add_argument('--lrf', type=float, default=0.01, help='final learning rate (lr0 * lrf)')
     parser.add_argument('--cos-lr', action='store_true', help='cosine learning rate schedule')    
@@ -30,7 +34,7 @@ def parser_arguments():
     parser.add_argument('--scale', type=float, default=0.5, help='image scale (+/- gain)')
     parser.add_argument('--mixup', type=float, default=0.00, help='image mixup (probability)')
     parser.add_argument('--copy-paste', type=float, default=0.00, help='copy-paste (probability)')
-    
+
     return parser.parse_args()
 
 if __name__ == '__main__':
@@ -44,7 +48,7 @@ if __name__ == '__main__':
         model = YOLO(args.model_cfg)
         if args.weights != '':
             # transfer weights
-            model.load(args.weights) 
+            model.load(args.weights)
     elif args.weights != '':
         # Load a pretrained YOLO model (recommended for training)
         model = YOLO(args.weights)

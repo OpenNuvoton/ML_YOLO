@@ -1,9 +1,13 @@
-
+"""
+DG version of validation PyTorch yolov8-nano 
+"""
+import argparse
 from ultralytics import YOLO
 
-import argparse
-
 def parser_arguments():
+    """
+    Parser section
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', type=str, help='initial weights path')
     parser.add_argument('--data', type=str, default='coco128.yaml', help='dataset.yaml path')
@@ -25,8 +29,6 @@ if __name__ == '__main__':
 
     model = YOLO(args.weights)
 
-    separate_outputs = False if (args.weights.endswith('.pt') or args.no_separate_outputs) else True
-    save_json = True if args.annotations else False
-    success = model.val(cache=False, int8=True, batch=16, data=args.data, imgsz=args.imgsz, rect=False, device=args.device, separate_outputs=separate_outputs, save_json=save_json, anno_json=args.annotations)
-
-    
+    SEPERATE_OUTPUTS = False if (args.weights.endswith('.pt') or args.no_separate_outputs) else True
+    SAVE_JSON = True if args.annotations else False
+    success = model.val(cache=False, int8=True, batch=16, data=args.data, imgsz=args.imgsz, rect=False, device=args.device, separate_outputs=SEPERATE_OUTPUTS, save_json=SAVE_JSON, anno_json=args.annotations)
