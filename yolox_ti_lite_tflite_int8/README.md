@@ -37,6 +37,7 @@ python -m pip install --no-input -r requirements.txt
 ```bash
 python setup.py develop
 ```
+- If there is an error msg says about `Microsoft Visual C++ is required`, please install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 
  ## How to Use
  ### 0. UIRun notebook
