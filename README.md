@@ -6,9 +6,9 @@
 -
 | Model | Training Framwork |Int8 Full Quantization TFLite| Folder |Description |
 | :-- | :-- | :-- | :-- |:-- |
-| Yolo Fastest v1.1  | Darknet | :heavy_check_mark: | [yolo_fastest_v1.1](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolo_fastest_v1.1) ||
-| YoloX-nano | PyTorch | :heavy_check_mark: | [yolox_ti_lite_tflite_int8](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolox_ti_lite_tflite_int8) |Some model updates have been made to improve the accuracy of quantized models. Please check the folder link for more details.|
-| Yolov8-nano | PyTorch | :heavy_check_mark: | [yolov8_ultralytics](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolov8_ultralytics) |Some model updates have been made to enhance the performance of quantized models. Please check the folder link for more details.|
+| Yolo Fastest v1.1  | Darknet | :heavy_check_mark: | [yolo_fastest_v1.1](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolo_fastest_v1.1) |([readme](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolo_fastest_v1.1#readme))|
+| YoloX-nano | PyTorch | :heavy_check_mark: | [yolox_ti_lite_tflite_int8](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolox_ti_lite_tflite_int8) |Some model updates have been made to improve the accuracy of quantized models. Please check the folder link for more details. ([readme](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolov8_ultralytics#readme))|
+| Yolov8-nano | PyTorch | :heavy_check_mark: | [yolov8_ultralytics](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolov8_ultralytics) |Some model updates have been made to enhance the performance of quantized models. Please check the folder link for more details. ([readme](https://github.com/OpenNuvoton/ML_YOLO/tree/master/yolox_ti_lite_tflite_int8#readme))|
 
 ## 2. Model Comparison
 - Users can select models based on their application usage scenarios.
@@ -27,4 +27,12 @@
     - The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes. [Link](https://www.nuvoton.com/ai/contact-us/)
     - MCU: [ML_M55M1_SampleCode (private repo)](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
         - ObjectDetection_FreeRTOS_yoloxn/
-        - ObjectDetection_YOLOv8n/ 
+        - ObjectDetection_YOLOv8n/
+     
+# Q&A
+### 1. Where can I download the dataset?
+- COCO-2017
+   - There are several ways to download it. Here are some links where you can download it manually.
+   - [kaggle](https://www.kaggle.com/datasets/awsaf49/coco-2017-dataset), [cocodataset.org](https://cocodataset.org/#download)
+- Other example dataset
+   - [roboflow dataset](https://public.roboflow.com/object-detection/), [kaggle](https://www.kaggle.com/datasets)
