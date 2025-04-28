@@ -1,15 +1,24 @@
 @ ECHO off
-set MODEL_SRC_DIR=C:\ProgramData\miniforge3
+set "POSSIBLE_LOCATIONS=C:\ProgramData\miniforge3;C:\Users\%USERNAME%\miniforge3;C:\Users\%USERNAME%\AppData\Local\miniforge3;C:\ProgramData\Miniconda3;C:\Users\%USERNAME%\Miniconda3;C:\Users\%USERNAME%\AppData\Local\Miniconda3"
+
+for %%d in (%POSSIBLE_LOCATIONS%) do (
+    if exist "%%d\Scripts\activate.bat" (
+        set "MODEL_SRC_DIR=%%d"
+        goto found_conda
+    )
+)
+
+:found_conda
 set CONDA_ENV=yolox_nu
 
 set YOLOX_DIR=%~dp0
 
-set IMG_SIZE=320
-set NUM_CLS=6
-set MODEL_FILE_NAME=yolox_n_nu_320_mytask
+set IMG_SIZE=192
+set NUM_CLS=80
+set MODEL_FILE_NAME=yolox_n_nu_192_coco
 set YOLOX_M_CONFIG=exps/default/yolox_nano_ti_lite_nu.py
-set OUTPUT_DIR=YOLOX_outputs/yolox_n_nu_320
-set TRAIN_DATASET=datasets/medicine_coco/train2017
+set OUTPUT_DIR=YOLOX_outputs/yolox_nano_ti_lite_nu_192
+set TRAIN_DATASET=datasets/coco/train2017
 
 set YOLOX_PYTORCH=%OUTPUT_DIR%/latest_ckpt.pth
 set YOLOX_ONNX=%OUTPUT_DIR%/%MODEL_FILE_NAME%.onnx

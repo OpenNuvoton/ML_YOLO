@@ -22,7 +22,7 @@ python -m pip install --upgrade pip
 **1.** Installing pytorch, basing on the type of system, CUDA version, PyTorch version, and MMCV version [pytorch_locally](https://pytorch.org/get-started/locally/)
 - The below example is CUDA needed. If cpu only, please check [pytorch_locally](https://pytorch.org/get-started/locally/). 
 ```bash 
-python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+python -m pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 **2.** Installing mmcv, basing on your hardware config [Install with pip](https://mmcv.readthedocs.io/en/latest/get_started/installation.html#install-with-pip)
 ```bash 
@@ -52,8 +52,9 @@ python tools/train.py -f <MODEL_CONFIG_FILE> -d 1 -b <BATCH_SIZE> --fp16 -o -c <
 python tools/train.py -f exps/default/yolox_nano_ti_lite_nu.py -d 1 -b 64 --fp16 -o -c pretrain/tflite_yolox_nano_ti/320_DW/yolox_nano_320_DW_ti_lite.pth
 ```
 - Please use `exps/default/yolox_nano_ti_lite_nu.py` for yolox-nano-ti-nu model which is able running on Nuvoton devices.
-- **Custome Train**:
+- **Custome Dataset Train**:
     - dataset format: COCO json format
+    - dataset download guide: [image dataset download](https://github.com/OpenNuvoton/ML_YOLO?tab=readme-ov-file#1-where-can-i-download-the-dataset)
     - The dataset structure and folders name must same as below:
     ```bash
     datasets/<dataset_name>
@@ -63,18 +64,18 @@ python tools/train.py -f exps/default/yolox_nano_ti_lite_nu.py -d 1 -b 64 --fp16
                |        |----------<val_annotation_json_file>
                |
                |----train2017
-               |        |---------train img
+               |        |---------train imgs
                |
                |----val2017
-                        |---------validation img
+                        |---------validation imgs
     ```
-    - update dataset path, for example:
+    - update dataset path in `exps/default/yolox_nano_ti_lite_nu.py`, for example:
     ```bash
     self.data_dir = "datasets/hagrid_coco"
     self.train_ann = "hagrid_train.json"
     self.val_ann = "hagrid_val.json" 
     ```
-    - update resolution, number of classes and training epoch, for example:
+    - update resolution, number of classes and training epoch in `exps/default/yolox_nano_ti_lite_nu.py`, for example:
     ```bash
     self.input_size = (320, 320) # resolution
     self.test_size = (320, 320) # resolution

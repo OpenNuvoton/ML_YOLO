@@ -14,6 +14,7 @@ import argparse
 import glob
 import os
 import random
+import itertools
 
 import cv2
 import numpy as np
@@ -40,7 +41,8 @@ def main():
 
     args = parse_args()
 
-    img_paths = glob.glob(os.path.join(args.img_dir, '*'))
+    img_paths = list(itertools.chain.from_iterable(
+    glob.glob(os.path.join(args.img_dir, ext)) for ext in ('*.jpg', '*.jpeg', '*.png')))
     img_paths.sort()
 
     assert len(img_paths) >= args.n_img

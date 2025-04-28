@@ -1,6 +1,15 @@
 @ ECHO off
+set "POSSIBLE_LOCATIONS=C:\ProgramData\miniforge3;C:\Users\%USERNAME%\miniforge3;C:\Users\%USERNAME%\AppData\Local\miniforge3;C:\ProgramData\Miniconda3;C:\Users\%USERNAME%\Miniconda3;C:\Users\%USERNAME%\AppData\Local\Miniconda3"
+
+for %%d in (%POSSIBLE_LOCATIONS%) do (
+    if exist "%%d\Scripts\activate.bat" (
+        set "MODEL_SRC_DIR=%%d"
+        goto found_conda
+    )
+)
+
+:found_conda
 ::set below vals to yours
-set MODEL_SRC_DIR=C:\ProgramData\miniforge3
 set CONDA_ENV=yolov8_DG
 
 set YOLO_DIR=%~dp0

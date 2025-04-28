@@ -198,7 +198,7 @@ def main():
         output = model_det(img)
 
     if args.export_det:
-        torch.onnx._export(
+        torch.onnx.export(
             model_det,
             img,
             args.output_name,
@@ -210,7 +210,7 @@ def main():
         )
         logger.info("generated onnx model named {}".format(args.output_name))
     else:
-        torch.onnx._export(
+        torch.onnx.export(
             model,
             img,
             args.output_name,

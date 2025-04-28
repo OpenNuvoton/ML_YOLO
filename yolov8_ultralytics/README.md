@@ -16,7 +16,7 @@ python -m pip install --upgrade pip setuptools
 **1.** Installing pytorch, basing on the type of system, CUDA version, PyTorch version [pytorch_locally](https://pytorch.org/get-started/locally/)
 - The below example is CUDA needed. If cpu only, please check [pytorch_locally](https://pytorch.org/get-started/locally/). 
 ```bash 
-python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+python -m pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu118
 ```
 **2.** Installing the Ultralytics_yolov8
 - download this repo and open this directory.
@@ -30,6 +30,42 @@ python -m pip install .[export]
 ```bash
 python dg_train.py --model-cfg relu6-yolov8.yaml --data coco.yaml --imgsz 320 --weights yolov8n.pt --batch 64 --epochs 200
 ```
+- **Custome Dataset Train**:
+    - dataset format: [Ultralytics YOLO](https://docs.ultralytics.com/zh/datasets/detect/) format
+    - dataset download guide: [image dataset download](https://github.com/OpenNuvoton/ML_YOLO?tab=readme-ov-file#1-where-can-i-download-the-dataset)
+    - The dataset structure and folders name must same as below:
+    ```bash
+    <dataset_name>
+      |
+      |----train.txt (save each path of train imgs)
+      |----val.txt   (save each path of validation imgs)
+      |
+      |----train
+      |        |---------train imgs
+      |        |---------train labels txt file
+      |
+      |----val
+               |---------validation imgs
+               |---------validation labels txt file
+    ```
+    
+    - update dataset path in `coco.yaml`, for example:
+    ```bash
+    path: <your_dataset_path>\output_yolo_dogcat  # dataset root dir
+    train: train.txt
+    val: val.txt
+    test: val.txt
+    
+    # Classes
+    names:
+      0: cat
+      1: dog
+    ```
+  
+    - (Optional) convert COCO JSON format to YOLO txt format
+        - Follow steps in `ML_YOLO\yolo_fastest_v1.1\Yolo-Fastest-darknet\training_demo\json2txt.ipynb` or
+        - Follow Ultralytics API [port-or-convert-label-formats](https://docs.ultralytics.com/zh/datasets/detect/#port-or-convert-label-formats)
+    
 
 ### 2. Evaluate Pytorch Model (Optional)
 - example:

@@ -36,3 +36,13 @@
    - [kaggle](https://www.kaggle.com/datasets/awsaf49/coco-2017-dataset), [cocodataset.org](https://cocodataset.org/#download)
 - Other example dataset
    - [roboflow dataset](https://public.roboflow.com/object-detection/), [kaggle](https://www.kaggle.com/datasets)
+
+### 2. The annotation format
+- Model:
+    - Yolo Fastest v1.1: YOLO txt format
+    - YoloX-nano: COCO format
+    - Yolov8-nano: Ultralytics YOLO txt format
+- Script:
+    - YOLO to COCO: `yolox_ti_lite_tflite_int8/tools/yolo2coco.py`
+    - COCO to YOLO: `ML_YOLO/yolo_fastest_v1.1/Yolo-Fastest-darknet/training_demo/json2txt.ipynb`
+
