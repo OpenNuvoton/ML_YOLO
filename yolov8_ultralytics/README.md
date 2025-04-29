@@ -61,6 +61,10 @@ python dg_train.py --model-cfg relu6-yolov8.yaml --data coco.yaml --imgsz 320 --
       0: cat
       1: dog
     ```
+    - update number of classes in `ultralytics/cfg/models/v8/relu6-yolov8.yaml`, for example:
+    ```bash
+    nc: 80  # number of classes
+    ```
   
     - (Optional) convert COCO JSON format to YOLO txt format
         - Follow steps in `ML_YOLO\yolo_fastest_v1.1\Yolo-Fastest-darknet\training_demo\json2txt.ipynb` or
