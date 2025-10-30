@@ -24,8 +24,7 @@
     - MPU: [MA35D1](https://github.com/OpenNuvoton/MA35D1_Linux_Applications/tree/master/machine_learning)
 
 - YoloX-nano/ Yolov8-nano
-    - The ML_SampleCode repositories are private. Please contact Nuvoton to request access to these sample codes. [Link](https://www.nuvoton.com/ai/contact-us/)
-    - MCU: [ML_M55M1_SampleCode (private repo)](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
+    - MCU: [ML_M55M1_SampleCode](https://github.com/OpenNuvoton/ML_M55M1_SampleCode)
         - ObjectDetection_FreeRTOS_yoloxn/
         - ObjectDetection_YOLOv8n/
      
