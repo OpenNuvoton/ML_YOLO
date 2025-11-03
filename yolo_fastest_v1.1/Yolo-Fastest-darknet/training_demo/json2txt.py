@@ -36,11 +36,18 @@ class Json2Txt:
         f.close()
         return data
 
-    def __load_images_from_folder(self, folder):  ### 使用yield，降低ram使用
-        count = 0
-        for filename in os.listdir(folder):
-            count += 1
-            yield filename
+    #def __load_images_from_folder(self, folder):  ### 使用yield，降低ram使用
+    #    count = 0
+    #    for filename in os.listdir(folder):
+    #        count += 1
+    #        yield filename
+
+    def __load_images_from_folder(self, folder):
+        exts = (".jpg", ".jpeg", ".png", ".bmp")
+        with os.scandir(folder) as entries:
+            for entry in entries:
+                if entry.is_file() and entry.name.lower().endswith(exts):
+                    yield entry.name        
 
     def __transfer_classes(self, category_class_name):  ### 轉換label name to number
 
@@ -168,7 +175,7 @@ class Json2Txt:
 
         print(f"Create the dataset path file: {output_dataset_path}")
 
-    def run_annotation(self, imgs_folder, output_path):
+    def run_annotation(self, imgs_folder, output_path, copy_img_en):
         """
         run annotation
         """
@@ -183,10 +190,11 @@ class Json2Txt:
                     self.convert_to_yolo(ann, img["width"], img["height"], file_object)
                 file_object.close()
                 # copy img to new output_path because yolo train dir structure needed
-                try:
-                    shutil.copy(os.path.join(imgs_folder, img_filename), os.path.join(output_path, img_filename))
-                except FileNotFoundError:
-                    print("Error occurred while copying file.")
+                if copy_img_en:
+                    try:
+                        shutil.copy(os.path.join(imgs_folder, img_filename), os.path.join(output_path, img_filename))
+                    except FileNotFoundError:
+                        print("Error occurred while copying file.")
             else:
                 print(f"Json file doesn't have {img} annotation info")
         print(f"Create the yolo annotation files in: {output_path}")
